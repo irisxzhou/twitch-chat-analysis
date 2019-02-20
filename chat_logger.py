@@ -4,11 +4,6 @@ from emoji import demojize
 
 
 
-logging.basicConfig(level=logging.DEBUG,
-                    format='%(asctime)s — %(message)s',
-                    datefmt='%Y-%m-%d_%H:%M:%S',
-                    handlers=[logging.FileHandler('chat.log', encoding='utf-8')])
-
 
 """
 Get token here: https://twitchapps.com/tmi/
@@ -20,11 +15,16 @@ nickname = 'anth003'
 # to keep token private 
 with open("oauth_token.txt") as f:
     token = f.readline()
-channel = '#agilities'
+channel = '#' + input("Channel name: ")
+
+
+logging.basicConfig(level=logging.DEBUG,
+                    format='%(asctime)s — %(message)s',
+                    datefmt='%Y-%m-%d_%H:%M:%S',
+                    handlers=[logging.FileHandler(channel[1:] + '.log', encoding='utf-8')])
 
 
 def main():
-    print(token)
 
     sock = socket.socket()
     sock.connect((server, port))
