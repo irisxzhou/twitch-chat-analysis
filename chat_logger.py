@@ -1,7 +1,7 @@
 import socket
 import logging
 from emoji import demojize
-
+import os 
 
 
 
@@ -21,10 +21,14 @@ channel = '#' + input("Channel name: ")
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s — %(message)s',
                     datefmt='%Y-%m-%d_%H:%M:%S',
-                    handlers=[logging.FileHandler(channel[1:] + '.log', encoding='utf-8')])
+                    handlers=[logging.FileHandler("logs/"+channel[1:] + '.log', encoding='utf-8')])
 
 
 def main():
+    try:
+        os.mkdir("./logs")
+    except FileExistsError:
+        pass
 
     sock = socket.socket()
     sock.connect((server, port))

@@ -1,4 +1,6 @@
 screenshots/
 logs/
+csv/
 notes.txt
 oauth_token.txt
+__pycache__
